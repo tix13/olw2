@@ -89,7 +89,7 @@ function MainPage() {
         <button
           className="brand"
           onClick={() => goTo("start")}
-          aria-label="Olvit Auto Serwis — strona główna"
+          aria-label="OLWIT Auto Serwis — strona główna"
         >
           <span className="brand-mark">O.</span>
           <span>
@@ -129,7 +129,7 @@ function MainPage() {
         <div className="hero-grid" />
         <div className="hero-content">
           <p className="eyebrow">
-            <span /> Dąbrowa Górnicza · od 2004
+            <span /> Dąbrowa Górnicza · od 2016
           </p>
           <h1>
             Twoje auto.
@@ -151,11 +151,11 @@ function MainPage() {
         </div>
         <aside className="hero-card" aria-label="Godziny pracy">
           <span className="status-dot" /> <span>Dzisiaj otwarte</span>
-          <strong>08:00 — 17:00</strong>
+          <strong>08:00 — 16:00</strong>
           <small>Poniedziałek — Piątek</small>
         </aside>
         <div className="hero-number">
-          20
+          10
           <small>
             lat
             <br />
@@ -205,7 +205,7 @@ function MainPage() {
         />
         <div className="workshop-copy">
           <p className="eyebrow">
-            <span /> Poznaj Olvit
+            <span /> Poznaj OLWIT
           </p>
           <h2>
             Dobry serwis
@@ -239,7 +239,7 @@ function MainPage() {
         </div>
       </section>
       <footer>
-        <span>© {new Date().getFullYear()} Olvit Auto Serwis</span>
+        <span>© {new Date().getFullYear()} OLWIT Auto Serwis</span>
         <button onClick={() => goTo("start")}>Wróć na górę ↑</button>
       </footer>
     </main>
