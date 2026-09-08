@@ -1,0 +1,275 @@
+/* =========================================================
+   Olvit Auto Serwis — Wyświetlacz na hali (TV)
+   Ciemny motyw, duże napisy, czytelne z odległości
+   ========================================================= */
+
+.display-board {
+  --navy: #0b2545;
+  --navy-dark: #071a33;
+  --navy-light: #17335c;
+  --gold: #d4af37;
+  --success: #2fae5c;
+  --danger: #e5484d;
+  --text-muted: #a9b7cc;
+
+  width: 100vw;
+  min-height: 100vh;
+  margin-left: calc(50% - 50vw);
+  background: linear-gradient(180deg, var(--navy-dark) 0%, var(--navy) 100%);
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  padding: 28px 40px 40px;
+}
+
+.display-board * {
+  box-sizing: border-box;
+}
+
+.board-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.35);
+}
+
+.board-header h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--gold);
+}
+
+.board-clock {
+  margin-left: auto;
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+}
+
+.board-error {
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: rgba(229, 72, 77, 0.2);
+  border: 1.5px solid var(--danger);
+  color: #ffb4b6;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.board-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.board-column {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 24px;
+  min-height: 60vh;
+}
+
+.board-column-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
+}
+
+.board-column-header h2 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.board-column-date {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  text-transform: capitalize;
+}
+
+.board-empty {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 40px;
+}
+
+.board-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.board-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-left: 6px solid var(--gold);
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+
+.board-card-accepted {
+  border-left-color: var(--success);
+}
+
+.board-card-pending {
+  border-left-color: var(--gold);
+}
+
+.board-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.board-card-model {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.board-card-status {
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.board-card-accepted .board-card-status {
+  background: rgba(47, 174, 92, 0.2);
+  color: #7be3a4;
+}
+
+.board-card-pending .board-card-status {
+  background: rgba(212, 175, 55, 0.2);
+  color: #f0d27a;
+}
+
+.board-card-repairs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.board-repair-chip {
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.board-card-note {
+  margin-top: 10px;
+  font-size: 1.05rem;
+  color: #f0d27a;
+  font-style: italic;
+}
+
+/* ---------------- Stanowiska ---------------- */
+
+.board-stations {
+  margin-top: 32px;
+}
+
+.board-stations-title {
+  margin: 0 0 16px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.board-stations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.board-station-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  padding: 20px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.board-station-card-busy {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.board-station-number {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.board-station-model {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.board-station-repairs {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+.board-station-hours {
+  margin-top: auto;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.board-station-empty {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: auto;
+}
+
+/* ---------------- Węższe ekrany (podgląd na laptopie/tablecie) ---------------- */
+
+@media (max-width: 900px) {
+  .board-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .display-board {
+    padding: 20px;
+  }
+
+  .board-header h1 {
+    font-size: 2rem;
+  }
+
+  .board-clock {
+    font-size: 1.5rem;
+  }
+
+  .board-stations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

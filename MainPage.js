@@ -13,16 +13,8 @@ const services = [
     "Diagnostyka komputerowa",
     "Precyzyjnie znajdujemy źródło problemu, zanim zaczniemy naprawę.",
   ],
-  [
-    "02",
-    "Mechanika pojazdowa",
-    "Hamulec, zawieszenie, silnik — kompleksowa opieka nad autem.",
-  ],
-  [
-    "03",
-    "Serwis okresowy",
-    "Olej, filtry i przegląd, który daje Ci spokój na kolejne kilometry.",
-  ],
+  ["02", "Mechanika pojazdowa", "Hamulec, zawieszenie, silnik — kompleksowa opieka nad autem."],
+  ["03", "Serwis okresowy", "Olej, filtry i przegląd, który daje Ci spokój na kolejne kilometry."],
 ];
 
 function ArrowIcon() {
@@ -60,9 +52,7 @@ function MainPage() {
       .filter(Boolean);
     const observer = new IntersectionObserver(
       (entries) =>
-        entries.forEach(
-          (entry) => entry.isIntersecting && setActiveSection(entry.target.id)
-        ),
+        entries.forEach((entry) => entry.isIntersecting && setActiveSection(entry.target.id)),
       { rootMargin: "-38% 0px -55% 0px" }
     );
     sections.forEach((section) => observer.observe(section));
@@ -70,9 +60,7 @@ function MainPage() {
   }, []);
 
   const goTo = (id) => {
-    document
-      .getElementById(id)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMenuOpen(false);
   };
 
@@ -106,10 +94,7 @@ function MainPage() {
         >
           <MenuIcon />
         </button>
-        <nav
-          className={menuOpen ? "site-nav is-open" : "site-nav"}
-          aria-label="Główna nawigacja"
-        >
+        <nav className={menuOpen ? "site-nav is-open" : "site-nav"} aria-label="Główna nawigacja">
           {navItems.map(([label, id]) => (
             <button
               key={id}
@@ -139,8 +124,8 @@ function MainPage() {
             <em>Nasza odpowiedzialność.</em>
           </h1>
           <p className="hero-copy">
-            Rzetelna diagnostyka, uczciwe doradztwo i fachowa naprawa. Zostaw
-            nam samochód — odbierz pewność na każdej trasie.
+            Rzetelna diagnostyka, uczciwe doradztwo i fachowa naprawa. Zostaw nam samochód — odbierz
+            pewność na każdej trasie.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href={PHONE_HREF}>
@@ -188,10 +173,7 @@ function MainPage() {
                 <h3>{title}</h3>
                 <p>{description}</p>
               </div>
-              <button
-                onClick={() => goTo("contact")}
-                aria-label={`Zapytaj o: ${title}`}
-              >
+              <button onClick={() => goTo("contact")} aria-label={`Zapytaj o: ${title}`}>
                 <ArrowIcon />
               </button>
             </article>
@@ -215,8 +197,8 @@ function MainPage() {
             zaczyna się od <em>rozmowy.</em>
           </h2>
           <p>
-            Nie wymieniamy części na ślepo. Najpierw słuchamy, sprawdzamy i
-            jasno wyjaśniamy, co jest potrzebne Twojemu autu.
+            Nie wymieniamy części na ślepo. Najpierw słuchamy, sprawdzamy i jasno wyjaśniamy, co
+            jest potrzebne Twojemu autu.
           </p>
           <a href={EMAIL_HREF} className="inline-link">
             Napisz do nas <ArrowIcon />
@@ -229,9 +211,7 @@ function MainPage() {
           <span /> Zadbaj o swoje auto
         </p>
         <h2>Porozmawiajmy.</h2>
-        <p className="contact-lead">
-          Zadzwoń lub napisz — wspólnie znajdziemy dogodny termin.
-        </p>
+        <p className="contact-lead">Zadzwoń lub napisz — wspólnie znajdziemy dogodny termin.</p>
         <a className="contact-phone" href={PHONE_HREF}>
           {PHONE_DISPLAY}
         </a>
