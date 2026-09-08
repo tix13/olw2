@@ -15,3 +15,85 @@
 @keyframes rise { from { opacity:0;transform:translateY(22px) } to { opacity:1;transform:none } } @keyframes float { 50% { transform:translate(25px,30px) scale(1.13) } } @keyframes pulse { 50% { transform:scaleY(.35);transform-origin:top;opacity:.35 } }
 @media(max-width:800px){ .site-header{height:68px;padding:0 20px}.menu-toggle{display:block}.site-nav{display:none}.site-nav.is-open{display:flex;position:absolute;left:15px;right:15px;top:62px;padding:20px;background:#1b2728;box-shadow:0 14px 30px #0005;flex-direction:column;align-items:stretch;gap:12px}.site-nav button{text-align:left}.nav-call{justify-content:center}.hero{min-height:680px;padding:160px 24px 100px}.hero-card{right:24px;top:auto;bottom:113px}.hero-number{display:none}.scroll-cue{left:24px}.hero-copy{font-size:13px;max-width:470px}.services{padding:80px 24px;display:block}.section-heading{margin-bottom:45px}.service-card{grid-template-columns:38px 1fr 35px;min-height:125px}.service-card h3{font-size:16px}.workshop{grid-template-columns:1fr}.workshop-photo{height:330px;background:linear-gradient(0deg,#101819,transparent 60%),url("https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=85") center/cover}.workshop-copy{padding:75px 24px}.contact{padding:90px 20px 70px}.contact-details{flex-direction:column;gap:10px}.contact-details span{width:15px;height:1px}footer{margin:0 20px;padding:18px 0}.hero-actions{gap:19px} }
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;scroll-behavior:auto!important;transition:none!important}}
+
+/* Telefon: elementy hero układają się w naturalnym przepływie zamiast nakładać się absolutnie. */
+@media (max-width: 800px) {
+  .hero {
+    min-height: auto;
+    padding: 128px 24px 38px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(43px, 13vw, 58px);
+  }
+
+  .hero-actions {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .hero-card {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: 42px;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .scroll-cue {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    display: block;
+    margin-top: 32px;
+  }
+
+  .site-nav.is-open {
+    max-height: calc(100vh - 82px);
+    overflow-y: auto;
+  }
+
+  .service-card {
+    padding: 22px 0;
+  }
+
+  .service-card:hover {
+    padding: 22px 10px;
+  }
+
+  .contact-phone {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 390px) {
+  .site-header {
+    padding: 0 16px;
+  }
+
+  .brand {
+    font-size: 12px;
+  }
+
+  .hero,
+  .services,
+  .workshop-copy,
+  .contact {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .hero-actions {
+    gap: 16px;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
