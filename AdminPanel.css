@@ -1,0 +1,1459 @@
+/* =========================================================
+   Olvit Auto Serwis — Panel Admina
+   Motyw: granat + złoto (spójny z cennikiem warsztatu)
+   ========================================================= */
+
+.admin-page {
+  --navy: #0b2545;
+  --navy-light: #17335c;
+  --navy-dark: #071a33;
+  --gold: #d4af37;
+  --gold-dark: #b8912b;
+  --gold-soft: rgba(212, 175, 55, 0.14);
+  --bg: #eef1f6;
+  --card: #ffffff;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --border: #e3e7ee;
+  --danger: #e5484d;
+  --danger-dark: #c8383d;
+  --success: #2fae5c;
+  --success-dark: #24924c;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 8px 24px rgba(11, 37, 69, 0.08);
+
+  /* Full-bleed trick: wychodzi poza ograniczenia rodzica (np. szablonu),
+     żeby nie zostawały czarne/puste pasy po bokach na telefonie. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    var(--navy) 0px,
+    var(--navy) 88px,
+    var(--bg) 88px
+  );
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  box-sizing: border-box;
+}
+
+.admin-page * {
+  box-sizing: border-box;
+}
+
+.admin-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+.admin-container-login {
+  max-width: 900px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ---------------- Logowanie ---------------- */
+
+.admin-login {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 50px rgba(11, 37, 69, 0.25);
+  text-align: center;
+}
+
+.admin-login h2 {
+  margin: 0 0 28px;
+  color: var(--navy);
+  font-size: 22px;
+}
+
+.admin-login input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 18px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  background: #fbfcfe;
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.admin-login input:focus {
+  border-color: var(--gold);
+  outline: none;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+.admin-login button {
+  width: 100%;
+}
+
+/* ---------------- Górny pasek (nagłówek) ---------------- */
+
+.admin-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: -24px -20px 24px;
+  padding: 22px 20px 26px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  border-radius: 0 0 20px 20px;
+}
+
+.admin-topbar h2 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 21px;
+  letter-spacing: 0.2px;
+}
+
+.admin-topbar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.admin-topbar-actions button,
+.import-label,
+.erp-download-link {
+  padding: 10px 16px;
+  background: var(--gold);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13.5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.35);
+}
+
+.admin-topbar-actions button:hover,
+.import-label:hover,
+.erp-download-link:hover {
+  background: var(--gold-dark);
+  transform: translateY(-1px);
+}
+
+.import-label,
+.erp-download-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.admin-topbar-actions .logout-button {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.admin-topbar-actions .logout-button:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.admin-topbar-actions .delete-button {
+  background: var(--danger);
+  box-shadow: 0 3px 10px rgba(229, 72, 77, 0.35);
+}
+
+.admin-topbar-actions .delete-button:hover {
+  background: var(--danger-dark);
+}
+
+.current-user-badge {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 9px 14px;
+}
+
+/* ---------------- Nagłówki sekcji ---------------- */
+
+.admin-container h3 {
+  color: var(--navy);
+  font-size: 19px;
+  margin: 34px 0 14px;
+  padding-left: 12px;
+  border-left: 4px solid var(--gold);
+}
+
+.admin-container h3:first-of-type {
+  margin-top: 4px;
+}
+
+.admin-container h4 {
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+
+.admin-container p {
+  color: var(--text-muted);
+}
+
+/* ---------------- Przyciski ogólne ---------------- */
+
+.logout-button,
+.login-box button,
+form button {
+  padding: 13px 24px;
+  background: var(--gold);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.logout-button:hover,
+.login-box button:hover,
+form button:hover {
+  background: var(--gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
+
+.accept-button,
+.reject-button,
+.delete-button {
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13.5px;
+  transition: all 0.2s ease;
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.accept-button {
+  background-color: var(--success);
+  color: white;
+}
+
+.accept-button:hover {
+  background-color: var(--success-dark);
+  transform: translateY(-1px);
+}
+
+.reject-button {
+  background-color: var(--danger);
+  color: white;
+}
+
+.reject-button:hover {
+  background-color: var(--danger-dark);
+  transform: translateY(-1px);
+}
+
+.delete-button {
+  background-color: #64748b;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #52606f;
+  transform: translateY(-1px);
+}
+
+.edit-button {
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13.5px;
+  transition: all 0.2s ease;
+  margin-right: 5px;
+  font-weight: 700;
+  background-color: #2f6fae;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #26588a;
+  transform: translateY(-1px);
+}
+
+.move-button {
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13.5px;
+  transition: all 0.2s ease;
+  margin-right: 5px;
+  font-weight: 700;
+  background-color: var(--navy);
+  color: white;
+}
+
+.move-button:hover {
+  background-color: var(--navy-light);
+  transform: translateY(-1px);
+}
+
+.agenda-card-editing {
+  border: 1.5px solid var(--gold);
+  background: var(--gold-soft);
+}
+
+.edit-form-heading {
+  font-weight: 800;
+  color: var(--navy);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.appointment-note-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+
+.appointment-note-textarea {
+  padding: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fbfcfe;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13.5px;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.appointment-note-textarea:focus {
+  border-color: var(--gold);
+  outline: none;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+/* ---------------- Dni nieczynne ---------------- */
+
+.inactive-day-form {
+  display: flex;
+  gap: 15px;
+  margin-top: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  background: var(--card);
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.inactive-day-form input {
+  padding: 13px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fbfcfe;
+  color: var(--text);
+  flex: 1;
+  min-width: 200px;
+  transition: all 0.2s ease;
+}
+
+.inactive-day-form input:focus {
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+.inactive-day-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.inactive-day-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.inactive-day-field input {
+  min-width: 0;
+  width: 100%;
+}
+
+.admin-container ul {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-container li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+.inactive-day-author {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+/* ---------------- Formularz dodawania wizyty ---------------- */
+
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 12px;
+  padding: 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.appointment-form-fields {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.appointment-form-fields input {
+  padding: 13px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fbfcfe;
+  color: var(--text);
+  flex: 1;
+  min-width: 180px;
+  transition: all 0.2s ease;
+}
+
+.appointment-form-fields input:focus,
+.repair-type-input-row input:focus {
+  border-color: var(--gold);
+  outline: none;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+.appointment-submit-button {
+  align-self: flex-start;
+}
+
+.liczba-dni-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 0 0 110px;
+  min-width: 90px;
+}
+
+.liczba-dni-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.liczba-dni-input {
+  min-width: 0 !important;
+  width: 100%;
+  flex: none !important;
+}
+
+.liczba-dni-range-hint {
+  margin: -8px 0 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.repair-type-adder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+
+.repair-type-label {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 13.5px;
+}
+
+.repair-type-input-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.repair-type-input-row input {
+  padding: 13px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fbfcfe;
+  color: var(--text);
+  flex: 1;
+  min-width: 200px;
+}
+
+.repair-hours-input {
+  flex: 0 0 110px !important;
+  min-width: 90px !important;
+}
+
+.repair-hours-hint {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.repair-type-input-row button {
+  padding: 10px 18px;
+  background: var(--navy);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.repair-type-input-row button:hover {
+  background: var(--navy-light);
+  transform: translateY(-1px);
+}
+
+.repair-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.repair-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--gold-soft);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  color: var(--gold-dark);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.repair-chip-static {
+  background: #eef1f6;
+  border-color: var(--border);
+  color: var(--navy);
+}
+
+.repair-chip-hours {
+  opacity: 0.75;
+  font-weight: 600;
+}
+
+.repair-chip-remove {
+  border: none;
+  background: transparent;
+  color: var(--gold-dark);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+}
+
+.repair-chip-edit {
+  border: none;
+  background: transparent;
+  color: var(--navy);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0;
+}
+
+.repair-chip-editing-item {
+  background: #ffffff;
+  border-color: var(--navy);
+  gap: 8px;
+}
+
+.repair-chip-edit-input {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 13px;
+  min-width: 120px;
+}
+
+.repair-chip-edit-hours {
+  flex: 0 0 70px !important;
+  min-width: 60px !important;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 13px;
+}
+
+.repair-chip-save {
+  border: none;
+  background: transparent;
+  color: var(--success-dark);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+}
+
+/* ---------------- Wyszukiwarka wizyt ---------------- */
+
+.appointment-search-bar {
+  position: relative;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.appointment-search-icon {
+  position: absolute;
+  left: 18px;
+  font-size: 15px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.appointment-search-input {
+  width: 100%;
+  padding: 14px 44px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 14px;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+
+.appointment-search-input:focus {
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+.appointment-search-clear {
+  position: absolute;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  background-color: var(--bg);
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.appointment-search-clear:hover {
+  background-color: var(--gold-soft);
+  color: var(--gold-dark);
+}
+
+.appointment-search-results {
+  margin-top: 12px;
+}
+
+.search-results-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-results-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.search-result-date {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 13.5px;
+}
+
+.agenda-card.search-result-card {
+  border-left-width: 4px !important;
+  border-left-style: solid !important;
+  transition: all 0.15s ease;
+}
+
+.agenda-card.search-result-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.agenda-card.search-result-card-pending {
+  border-left-color: var(--gold) !important;
+}
+
+.agenda-card.search-result-card-accepted {
+  border-left-color: var(--success) !important;
+}
+
+.agenda-card.search-result-card-rejected {
+  border-left-color: var(--danger) !important;
+}
+
+/* ---------------- Kalendarz wizyt ---------------- */
+
+.calendar-wrapper {
+  margin-top: 12px;
+  padding: 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.calendar-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  flex: 1;
+  text-align: center;
+}
+
+.calendar-nav-button {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: #ffffff;
+  color: var(--navy);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-nav-button:hover {
+  background: var(--navy);
+  color: #ffffff;
+  border-color: var(--navy);
+}
+
+.calendar-today-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--gold);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.35);
+}
+
+.calendar-today-button:hover {
+  background: var(--gold-dark);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.calendar-weekdays {
+  margin-bottom: 8px;
+}
+
+.calendar-weekday {
+  text-align: center;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  padding: 6px 0;
+}
+
+.calendar-day {
+  min-height: 90px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calendar-day:hover {
+  border-color: var(--gold);
+  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
+}
+
+.calendar-day-outside {
+  background: #f7f8fa;
+  color: #c2c8d2;
+}
+
+.calendar-day-weekend {
+  background: #f2f3f6;
+}
+
+.calendar-day-weekend .calendar-day-number {
+  color: #9aa4b5;
+}
+
+.calendar-day-today .calendar-day-number {
+  background: var(--navy);
+  color: #ffffff;
+  border-radius: 50%;
+}
+
+.calendar-day-selected {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+.calendar-day-number {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--navy);
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-day-appointments {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.calendar-badge {
+  font-size: 10.5px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+.calendar-badge-pending {
+  background: var(--gold);
+}
+
+.calendar-badge-accepted {
+  background: var(--success);
+}
+
+.calendar-badge-rejected {
+  background: var(--danger);
+}
+
+.calendar-badge-more {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.calendar-day-inactive {
+  background: repeating-linear-gradient(
+    45deg,
+    #fdecea,
+    #fdecea 8px,
+    #fbdada 8px,
+    #fbdada 16px
+  );
+  border-color: var(--danger);
+}
+
+.calendar-day-inactive:hover {
+  border-color: var(--danger-dark);
+  box-shadow: 0 3px 10px rgba(229, 72, 77, 0.25);
+}
+
+.calendar-day-inactive-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--danger-dark);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.calendar-day-overloaded {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 1px var(--danger) inset;
+}
+
+.calendar-day-overloaded-label {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--danger-dark);
+  text-align: center;
+}
+
+.calendar-day-notice-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  color: #2f6fae;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------------- Wskaźnik obciążenia dnia (limit godzin) ---------------- */
+
+.capacity-meter {
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+.capacity-meter-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 6px;
+  background: var(--bg);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.capacity-meter-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.capacity-meter-fill-over {
+  background: var(--danger);
+}
+
+.capacity-meter-label {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.capacity-over-label {
+  color: var(--danger-dark);
+}
+
+/* ---------------- Podpowiedź / ostrzeżenie przy wyborze dnia ---------------- */
+
+.calendar-hint {
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.reserve-list-hint {
+  margin: -8px 0 4px;
+  color: var(--text-muted);
+  font-size: 13.5px;
+}
+
+/* ---------------- Stanowiska (podnośniki na hali) ---------------- */
+
+.stations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.station-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.station-card-header {
+  font-weight: 800;
+  color: var(--navy);
+  font-size: 15px;
+}
+
+.station-select {
+  padding: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fbfcfe;
+  color: var(--text);
+  font-size: 13.5px;
+  width: 100%;
+}
+
+.station-select:focus {
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+.station-hours-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.station-hours-field input {
+  padding: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fbfcfe;
+  color: var(--text);
+  width: 100%;
+}
+
+.station-hours-field input:focus {
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+.station-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.station-card-actions button {
+  flex: 1;
+  margin-right: 0;
+}
+
+.inactive-day-warning {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: #fdecea;
+  border: 1.5px solid var(--danger);
+  border-radius: var(--radius-sm);
+  color: var(--danger-dark);
+  font-weight: 600;
+}
+
+.notice-day-warning {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: #eaf2fb;
+  border: 1.5px solid #2f6fae;
+  border-radius: var(--radius-sm);
+  color: #1f4d7a;
+  font-weight: 600;
+}
+
+.notice-section-hint {
+  margin: -8px 0 4px;
+  color: var(--text-muted);
+  font-size: 13.5px;
+}
+
+.selected-day-heading {
+  margin-top: 18px;
+}
+
+/* ---------------- Agenda wybranego dnia ---------------- */
+
+.day-agenda {
+  margin-top: 16px;
+  padding: 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.day-agenda h4 {
+  color: var(--navy);
+  font-size: 16px;
+}
+
+.agenda-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.agenda-card {
+  background: #fbfcfe;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.agenda-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.agenda-status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.agenda-status-pending {
+  background: var(--gold);
+}
+
+.agenda-status-accepted {
+  background: var(--success);
+}
+
+.agenda-status-rejected {
+  background: var(--danger);
+}
+
+.agenda-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.agenda-field {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.agenda-field strong {
+  color: var(--navy);
+}
+
+.agenda-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ---------------- Tablet (≤768px) ---------------- */
+
+@media (max-width: 768px) {
+  .calendar-day {
+    min-height: 60px;
+  }
+
+  .calendar-badge {
+    font-size: 9px;
+  }
+
+  .appointment-form-fields {
+    flex-direction: column;
+  }
+
+  .admin-container {
+    padding: 20px 14px 50px;
+  }
+}
+
+/* ---------------- Telefon (≤480px) ---------------- */
+
+@media (max-width: 480px) {
+  .admin-page {
+    background: linear-gradient(
+      180deg,
+      var(--navy) 0px,
+      var(--navy) 118px,
+      var(--bg) 118px
+    );
+  }
+
+  .admin-container {
+    padding: 16px 12px 40px;
+  }
+
+  .admin-container-login {
+    padding: 20px;
+  }
+
+  .admin-topbar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 12px;
+    margin: -16px -12px 20px;
+    padding: 20px 16px 24px;
+    border-radius: 0 0 18px 18px;
+  }
+
+  .admin-topbar h2 {
+    font-size: 19px;
+  }
+
+  .admin-topbar-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .admin-topbar-actions button,
+  .import-label,
+  .erp-download-link {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 16px;
+    font-size: 15px;
+  }
+
+  .current-user-badge {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .admin-container h3 {
+    font-size: 16.5px;
+    margin-top: 26px;
+  }
+
+  /* Formularze pełnoszerokie, przyciski wygodne do kliknięcia */
+  .appointment-form {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .appointment-form-fields input,
+  .repair-type-input-row input,
+  .inactive-day-form input,
+  .appointment-note-textarea,
+  .appointment-search-input {
+    padding: 13px;
+    font-size: 16px;
+  }
+
+  .appointment-search-input {
+    padding: 13px 40px;
+  }
+
+  .repair-type-input-row {
+    flex-direction: column;
+  }
+
+  .repair-type-input-row button {
+    width: 100%;
+    padding: 13px;
+  }
+
+  .appointment-submit-button {
+    width: 100%;
+    align-self: stretch;
+    padding: 13px;
+  }
+
+  .inactive-day-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .inactive-day-form input,
+  .inactive-day-form button {
+    width: 100%;
+  }
+
+  .inactive-day-field {
+    min-width: 0;
+  }
+
+  .calendar-day-inactive-label {
+    display: none;
+  }
+
+  /* Kalendarz: kropki zamiast tekstu w komórkach, większe pola dotykowe */
+  .calendar-wrapper {
+    padding: 12px;
+  }
+
+  .calendar-header {
+    gap: 8px;
+  }
+
+  .calendar-title {
+    font-size: 15px;
+  }
+
+  .calendar-nav-button {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .calendar-today-button {
+    padding: 8px 10px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .calendar-grid {
+    gap: 3px;
+  }
+
+  .calendar-weekday {
+    font-size: 11px;
+    padding: 4px 0;
+  }
+
+  .calendar-day {
+    min-height: 42px;
+    padding: 4px 2px;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .calendar-day:active {
+    background: var(--gold-soft);
+  }
+
+  .calendar-day-number {
+    font-size: 12px;
+  }
+
+  .calendar-day-appointments {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .calendar-badge {
+    width: 6px;
+    height: 6px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 0;
+    overflow: visible;
+  }
+
+  .calendar-badge-more {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    font-size: 0;
+    padding: 0;
+  }
+
+  /* Agenda dnia: karty na całą szerokość, duże przyciski */
+  .day-agenda {
+    padding: 14px;
+  }
+
+  .day-agenda h4 {
+    font-size: 15px;
+  }
+
+  .agenda-card {
+    padding: 13px;
+  }
+
+  .agenda-card-actions {
+    flex-direction: column;
+  }
+
+  .agenda-card-actions button {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .repair-chips {
+    gap: 6px;
+  }
+
+  .repair-chip {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  /* Login na telefonie */
+  .admin-login {
+    padding: 26px 18px;
+    border-radius: 12px;
+  }
+
+  .admin-login input {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,101 @@
+/* Reset i podstawowe style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Pasek nawigacyjny */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.company-name {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-right {
+  display: flex;
+}
+
+.nav-link {
+  margin-left: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #f0a500;
+}
+
+/* Sekcja hero tylko na stronie głównej */
+.hero-section {
+  background: url("https://source.unsplash.com/1600x900/?car,automotive") no-repeat center
+    center/cover;
+  height: 100vh; /* pełne okno przeglądarki */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px; /* odstęp, by nie nachodzić na navbar */
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 800px;
+  color: #fff;
+}
+
+.hero-overlay h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-overlay p {
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.hero-button {
+  display: inline-block;
+  background-color: #f0a500;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #d18e00;
+}

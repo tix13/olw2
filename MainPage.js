@@ -1,156 +1,230 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import "./MainPage.css";
 
-// Numer telefonu warsztatu - ten sam wyświetla się w tekście i jest wybierany
-// po kliknięciu przycisku (podmień na prawdziwy numer, jeśli inny)
-const PHONE_DISPLAY = "+48  502 207 616";
+const PHONE_DISPLAY = "+48 502 207 616";
 const PHONE_HREF = "tel:+48502207616";
+const EMAIL_HREF = "mailto:olwit.biuro@gmail.com";
 
-// Proste ikonki SVG wbudowane w kod - nie zależą od żadnych plików graficznych,
-// więc zawsze się wyświetlą, nawet jeśli obrazki *_bw.png / *_color.png nie istnieją na serwerze.
-function IconInfo() {
+const services = [
+  [
+    "01",
+    "Diagnostyka komputerowa",
+    "Precyzyjnie znajdujemy źródło problemu, zanim zaczniemy naprawę.",
+  ],
+  ["02", "Mechanika pojazdowa", "Hamulec, zawieszenie, silnik — kompleksowa opieka nad autem."],
+  ["03", "Serwis okresowy", "Olej, filtry i przegląd, który daje Ci spokój na kolejne kilometry."],
+];
+
+function ArrowIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="9.25" stroke="currentColor" strokeWidth="1.6" />
-      <circle cx="12" cy="8" r="1.15" fill="currentColor" />
-      <path d="M12 11.5V16.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 12h13M14 6l6 6-6 6" />
     </svg>
   );
 }
 
-function IconWrench() {
+function PhoneIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M14.7 6.3a4 4 0 00-5.4 4.9L4 16.5V20h3.5l5.3-5.3a4 4 0 004.9-5.4l-2.6 2.6-2-2 2.6-2.6z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7.1 4.6 4.8 6.9c-.2 5.4 4.8 10.4 10.2 10.2l2.3-2.3-2.7-2.7-1.8.9a11.2 11.2 0 0 1-1.9-1.6 11.2 11.2 0 0 1-1.6-1.9l.9-1.8-3.1-3.1Z" />
+      <path d="M14.5 5.5c2.2.4 3.6 1.8 4 4M14.5 2.5c3.8.4 6.6 3.2 7 7" />
     </svg>
   );
 }
 
-function IconPhone() {
+function MenuIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M6.6 10.8c1.3 2.6 3 4.3 5.6 5.6l1.9-1.9c.25-.25.6-.33.9-.2 1 .35 2.1.55 3.2.55.5 0 .9.4.9.9v3c0 .5-.4.9-.9.9C9.4 19.65 4.35 14.6 4.35 5.9c0-.5.4-.9.9-.9h3c.5 0 .9.4.9.9 0 1.1.2 2.2.55 3.2.1.3.03.65-.2.9l-1.9 1.9z"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16" />
     </svg>
   );
 }
 
 function MainPage() {
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("start");
+
+  useEffect(() => {
+    const sections = ["start", "services", "workshop", "contact"]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => entry.isIntersecting && setActiveSection(entry.target.id)),
+      { rootMargin: "-38% 0px -55% 0px" }
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  const goTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setMenuOpen(false);
   };
 
+  const navItems = [
+    ["Start", "start"],
+    ["Usługi", "services"],
+    ["Warsztat", "workshop"],
+    ["Kontakt", "contact"],
+  ];
+
   return (
-    <div className="main-page" id="page-top">
-      {/* Pasek z logo */}
-      <header className="logo-header">
-        <img
-          src="/photos/logo.png"
-          alt="Logo warsztatu"
-          className="logo"
-          onClick={() => scrollToSection("page-top")}
-        />
+    <main className="main-page">
+      <header className="site-header">
+        <button
+          className="brand"
+          onClick={() => goTo("start")}
+          aria-label="OLWIT Auto Serwis — strona główna"
+        >
+          <span className="brand-mark" aria-hidden="true">
+            OW
+          </span>
+          <span>
+            OLWIT <b>AUTO SERWIS</b>
+          </span>
+        </button>
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Otwórz menu"
+          aria-expanded={menuOpen}
+        >
+          <MenuIcon />
+        </button>
+        <nav className={menuOpen ? "site-nav is-open" : "site-nav"} aria-label="Główna nawigacja">
+          {navItems.map(([label, id]) => (
+            <button
+              key={id}
+              className={activeSection === id ? "active" : ""}
+              onClick={() => goTo(id)}
+            >
+              {label}
+            </button>
+          ))}
+          <a href={PHONE_HREF} className="nav-call">
+            <PhoneIcon /> Umów wizytę
+          </a>
+        </nav>
       </header>
 
-      {/* Sekcja O nas / hero - w tle zdjęcie warsztatu z zewnątrz */}
-      <section id="about-section" className="section hero-section">
-        <div className="section-inner">
-          <p className="hero-eyebrow">Olvit Auto Serwis</p>
-          <h1 className="hero-title">Twoje auto w dobrych rękach</h1>
-          <h2 className="hero-subtitle">O nas</h2>
-          <p>
-            Witamy w naszym warsztacie samochodowym, który od ponad 20 lat dba o niezawodność i
-            bezpieczeństwo pojazdów naszych klientów. Nasza pasja do motoryzacji i doświadczenie
-            pozwalają nam oferować usługi na najwyższym poziomie – od przeglądów technicznych po
-            skomplikowane naprawy silników. Nasz zespół to wykwalifikowani mechanicy, dla których
-            każdy samochód to nowe wyzwanie. Zaufaj nam, a Twoje auto będzie w najlepszych rękach!
+      <section className="hero" id="start">
+        <div className="hero-glow glow-one" />
+        <div className="hero-glow glow-two" />
+        <div className="hero-grid" />
+        <div className="hero-content">
+          <p className="eyebrow">
+            <span /> Dąbrowa Górnicza · od 2016
           </p>
-
-          {/* Przyciski nawigacyjne */}
-          <div className="nav-buttons">
-            <button
-              type="button"
-              className="nav-button"
-              onClick={() => scrollToSection("about-section")}
-            >
-              <span className="nav-button-icon">
-                <IconInfo />
-              </span>
-              <span className="nav-button-label">O nas</span>
-            </button>
-            <button
-              type="button"
-              className="nav-button"
-              onClick={() => scrollToSection("workshop-section")}
-            >
-              <span className="nav-button-icon">
-                <IconWrench />
-              </span>
-              <span className="nav-button-label">Warsztat</span>
-            </button>
-            <button
-              type="button"
-              className="nav-button"
-              onClick={() => scrollToSection("contact-section")}
-            >
-              <span className="nav-button-icon">
-                <IconPhone />
-              </span>
-              <span className="nav-button-label">Kontakt</span>
+          <h1>
+            Twoje auto.
+            <br />
+            <em>Nasza odpowiedzialność.</em>
+          </h1>
+          <p className="hero-copy">
+            Rzetelna diagnostyka, uczciwe doradztwo i fachowa naprawa. Zostaw nam samochód — odbierz
+            pewność na każdej trasie.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href={PHONE_HREF}>
+              Umów wizytę <ArrowIcon />
+            </a>
+            <button className="text-button" onClick={() => goTo("services")}>
+              Poznaj usługi <span>↓</span>
             </button>
           </div>
         </div>
+        <aside className="hero-card" aria-label="Godziny pracy">
+          <span className="status-dot" /> <span>Dzisiaj otwarte</span>
+          <strong>08:00 — 16:00</strong>
+          <small>Poniedziałek — Piątek</small>
+        </aside>
+        <div className="hero-number">
+          10
+          <small>
+            lat
+            <br />
+            doświadczenia
+          </small>
+        </div>
+        <div className="scroll-cue">
+          <span /> PRZEWIŃ, ABY ODKRYĆ
+        </div>
       </section>
 
-      {/* Sekcja Warsztat - w tle zdjęcie wnętrza warsztatu */}
-      <section id="workshop-section" className="section workshop-section">
-        <div className="section-inner">
-          <h2>Warsztat</h2>
-          <p>
-            Nasz warsztat to miejsce, gdzie Twoje auto otrzyma profesjonalną opiekę. Oferujemy pełen
-            zakres usług naprawczych, od wymiany oleju po naprawę układów hamulcowych i silników.
-            Dzięki nowoczesnemu sprzętowi i doświadczonej ekipie, każda wizyta w naszym warsztacie
-            to gwarancja jakości.
+      <section className="services section" id="services">
+        <div className="section-heading reveal">
+          <p className="eyebrow">
+            <span /> Co robimy najlepiej
           </p>
-
-          <a href={PHONE_HREF} className="action-button phone-button">
-            <IconPhone />
-            Zadzwoń i umów wizytę
-          </a>
-          <p className="phone-hint">lub zadzwoń bezpośrednio: {PHONE_DISPLAY}</p>
+          <h2>
+            Serwis, któremu
+            <br />
+            <em>możesz zaufać.</em>
+          </h2>
+        </div>
+        <div className="service-list">
+          {services.map(([number, title, description]) => (
+            <article className="service-card" key={number}>
+              <span className="service-number">{number}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+              <button onClick={() => goTo("contact")} aria-label={`Zapytaj o: ${title}`}>
+                <ArrowIcon />
+              </button>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* Sekcja Kontakt */}
-      <section id="contact-section" className="section contact-section">
-        <div className="section-inner">
-          <h2>Kontakt</h2>
-          <p>Skontaktuj się z nami, aby uzyskać więcej informacji lub umówić wizytę:</p>
-          <ul>
-            <li>Email: olwit.biuro@gmail.com</li>
-            <li>Telefon: {PHONE_DISPLAY}</li>
-            <li>Adres: ul. Granicza 10, 41-300 Dąbrowa Gornicza</li>
-          </ul>
-          <a href={PHONE_HREF} className="action-button">
-            Zadzwoń: {PHONE_DISPLAY}
+      <section className="workshop section" id="workshop">
+        <div
+          className="workshop-photo"
+          role="img"
+          aria-label="Mechanik pracujący przy samochodzie"
+        />
+        <div className="workshop-copy">
+          <p className="eyebrow">
+            <span /> Poznaj OLWIT
+          </p>
+          <h2>
+            Dobry serwis
+            <br />
+            zaczyna się od <em>rozmowy.</em>
+          </h2>
+          <p>
+            Nie wymieniamy części na ślepo. Najpierw słuchamy, sprawdzamy i jasno wyjaśniamy, co
+            jest potrzebne Twojemu autu.
+          </p>
+          <a href={EMAIL_HREF} className="inline-link">
+            Napisz do nas <ArrowIcon />
           </a>
         </div>
       </section>
-    </div>
+
+      <section className="contact section" id="contact">
+        <p className="eyebrow">
+          <span /> Zadbaj o swoje auto
+        </p>
+        <h2>Porozmawiajmy.</h2>
+        <p className="contact-lead">Zadzwoń lub napisz — wspólnie znajdziemy dogodny termin.</p>
+        <a className="contact-phone" href={PHONE_HREF}>
+          {PHONE_DISPLAY}
+        </a>
+        <div className="contact-details">
+          <a href={EMAIL_HREF}>olwit.biuro@gmail.com</a>
+          <span /> <address>ul. Graniczna 10, 41-300 Dąbrowa Górnicza</address>
+        </div>
+      </section>
+      <footer>
+        <span>© {new Date().getFullYear()} OLWIT Auto Serwis</span>
+        <button onClick={() => goTo("start")}>Wróć na górę ↑</button>
+      </footer>
+    </main>
   );
 }
 
