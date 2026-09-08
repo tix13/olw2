@@ -91,9 +91,11 @@ function MainPage() {
           onClick={() => goTo("start")}
           aria-label="OLWIT Auto Serwis — strona główna"
         >
-          <span className="brand-mark">O.</span>
+          <span className="brand-mark" aria-hidden="true">
+            OW
+          </span>
           <span>
-            OLVIT <b>AUTO SERWIS</b>
+            OLWIT <b>AUTO SERWIS</b>
           </span>
         </button>
         <button
